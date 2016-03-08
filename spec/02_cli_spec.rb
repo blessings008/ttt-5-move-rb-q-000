@@ -4,7 +4,7 @@ describe './bin/move executing a CLI Application' do
   it 'defines a board variable' do
     allow($stdout).to receive(:puts)
     allow(self).to receive(:gets).and_return("1")
-    allow(self).to receive(:move)
+
 
     board = get_variable_from_file("./bin/move", "board")
 
@@ -16,7 +16,7 @@ describe './bin/move executing a CLI Application' do
     allow(self).to receive(:gets).and_return("1")
 
     expect($stdout).to receive(:puts).with("Welcome to Tic Tac Toe!"), "Make sure `bin/move` has code that can output 'Welcome to Tic Tac Toe!' exactly."
-
+    expect($stdout).to receive(:puts).with("Where would you like to go?")
     run_file("./bin/move")
   end
 
@@ -27,7 +27,8 @@ describe './bin/move executing a CLI Application' do
 
     run_file("./bin/move")
   end
-
+  it 'uses #gets.strip to capture the user input and set it equal to a variable
+called current_user' do
   it 'calls move passing the user input' do
     allow($stdout).to receive(:puts)
 
